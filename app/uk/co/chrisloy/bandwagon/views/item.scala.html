@@ -1,0 +1,4 @@
+@(item:Item)
+
+<span class="item">@item.name</span>
+@item.tags.map { t => @tag(t) }

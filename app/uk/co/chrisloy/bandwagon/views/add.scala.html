@@ -1,0 +1,11 @@
+@(itemForm: Form[(String, String)])
+
+@import uk.co.chrisloy.bandwagon.controllers.routes.Application
+@import helper._
+
+<h3>Add a new item</h3>
+@form(Application.newItem) {
+    Name: <input name="name"/>
+    Tags: <input name="tags" style="width: 400px"/>
+    <input type="submit" value="Create"/>
+}

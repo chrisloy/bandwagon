@@ -1,0 +1,16 @@
+@(items: List[Item], tags:List[Tag], itemForm: Form[(String, String)])
+
+@main("bandwagon.") {
+    
+    <div id="main">
+    
+        <h3>@items.size items listed</h3>
+        
+        @items.map { i => <div>@item(i)</div> }
+        
+        <h3>@tags.size tags listed</h3>
+        @tags.map { t => @tag(t) }
+        
+        @add(itemForm)
+    </div>
+}

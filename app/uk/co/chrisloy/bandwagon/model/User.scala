@@ -1,0 +1,8 @@
+package uk.co.chrisloy.bandwagon.model
+
+class User(val id:Int, val name:String) {
+  
+  var likes:List[Item] = Nil
+  
+  def like(item:Item) = item :: likes
+}
