@@ -27,7 +27,7 @@ object Application extends Controller {
   
   def newItem = Action { implicit request =>
     val (name, tagStr) = itemForm.bindFromRequest.get
-    val tags:List[String] = tagStr.split(",").toList.map(s => s.trim()).filter(s => !s.isEmpty())
+    val tags:List[String] = tagStr.split(",").toList.map(s => s.trim().toLowerCase()).filter(s => !s.isEmpty())
     Cache.addItem(name, tags)
     Redirect(routes.Application.items)
   }
