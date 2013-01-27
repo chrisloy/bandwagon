@@ -1,4 +1,4 @@
-@(item:Item)
+@(mainTag:Tag)
 
-<span class="item">@item.name</span>
-@item.tags.map { t => @tag(t) }
+<span class="item"><a href="/@mainTag.url">@mainTag.name</a></span>
+@mainTag.tags.map { t => @tag(t) }

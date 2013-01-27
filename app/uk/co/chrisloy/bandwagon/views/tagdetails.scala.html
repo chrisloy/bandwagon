@@ -1,8 +1,8 @@
-@(tag:Tag, items:List[Item])
+@(tag:Tag)
 
 @main("bandwagon: " + tag.name) {
     <div id="main">
-        <h3>@items.size items listed for tag @tag.name</h3>
-        <ul>@items.map { i => <li>@item(i)</li> }</ul>
+        <h3>@tag.tags.size items listed for tag @tag.name</h3>
+        <ul>@tag.tags.map { i => <li>@item(i)</li> }</ul>
     </div>
 }
