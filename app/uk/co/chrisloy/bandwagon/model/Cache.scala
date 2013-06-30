@@ -29,7 +29,7 @@ object Cache {
   }
   
   def setupTag(tag:Tag, subTags:Iterable[String]) {
-    subTags.foreach(t => tag.addTag(t))
+    subTags.foreach(t => tag += t)
   }
   
   def getTag(name:String) = tags.filter(t => t.name == name).head

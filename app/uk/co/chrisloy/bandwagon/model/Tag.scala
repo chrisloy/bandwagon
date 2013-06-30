@@ -4,12 +4,21 @@ import play.api.db._
 import play.api.Play.current
 import Implicits._
 import play.Logger
-
+import com.mongodb.casbah.Imports._
 
 object Tag {
-  def apply(name:String):Tag = Cache.addTag(name.trim().toLowerCase())
+  def apply(name:String):Tag = {
+    val clean = name.trim.toLowerCase
+    val tag = new Tag(name)
+    Dao get name match {
+      case Some(db) => {
+        db.as[List[String]]("tags").foreach(t => tag += t)
+        tag
+      }
+      case None => tag
+    }
+  }
 }
-
 
 class Tag (val name:String) extends Equals {
   
@@ -20,10 +29,11 @@ class Tag (val name:String) extends Equals {
     other.isInstanceOf[Tag]
   }
   
-  def addTag(tag:Tag) {
+  def +=(tag:Tag):Tag = {
     Logger.debug("Adding tag " + tag + " to " + this)
     tags = tag :: tags
     Dao update this
+    this
   }
   
   def valid():Boolean = true // TODO

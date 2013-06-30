@@ -18,6 +18,10 @@ object Dao {
     tags += obj
   }
   
+  def get(name:String):Option[DBObject] = {
+    tags findOne MongoDBObject("name" -> name)
+  }
+  
   def apply(name:String):Tag = {
     val query = MongoDBObject("name" -> name)
     val cursor = tags.findOne(query)
